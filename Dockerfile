@@ -1,7 +1,7 @@
 #Build a docker image on top of python 3.9alpine image
-FROM python:3.8-alpine
+FROM python:3.10.0a2-slim-buster
 #Who maintains this image
-MAINTAINER PS
+MAINTAINER Pradeep
 
 #Unbuffered recommended for docker, outputs directly, does not buffer
 ENV PYTHONUNBUFFERED 1
@@ -22,5 +22,5 @@ COPY ./app /app
 
 #create user that will run application using docker.
 #-D means no home directory etc, will be used to run application only
-RUN adduser -D appuser
+RUN adduser -disabled-password appuser
 USER appuser
