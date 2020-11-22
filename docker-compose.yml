@@ -1,0 +1,19 @@
+#Configuration for all services that make the project
+version: "3" #version of docker compose
+
+services: #all services
+  aaw: #Name of service - only one currently
+    build:
+      context: . #context for build is current folder
+    ports:
+      - "8000:8000" #map port 8000 on host to 8000 on image
+    volumes:
+      - ./aaw:/aaw #maps app directory in project to app directory in image.
+      #Any changes in project are automatically pushed to
+      #image without need to restart
+
+      # runs command in a shell
+      # runs django development server on all ip addresses
+      #available in the docker container - 0.0.0.0
+    command: > #break to next line
+      sh -c "python manage.py runserver 0.0.0.0:8000"

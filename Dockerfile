@@ -1,5 +1,6 @@
 #Build a docker image on top of python 3.9alpine image
 FROM python:3.10.0a2-slim-buster
+
 #Who maintains this image
 MAINTAINER Pradeep
 
@@ -13,14 +14,15 @@ COPY ./requirements.txt /requirements.txt
 RUN pip install -r /requirements.txt
 
 #create empth folder on image
-RUN mkdir /app
+RUN mkdir /aaw
 #New dir as default dir for application
-WORKDIR /app
+WORKDIR /aaw
 
 #Copies code
-COPY ./app /app
+COPY ./aaw /aaw
+
 
 #create user that will run application using docker.
 #-D means no home directory etc, will be used to run application only
-RUN adduser -disabled-password appuser
-USER appuser
+RUN adduser --disabled-password --gecos '' aawuser
+USER aawuser
